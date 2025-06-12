@@ -140,6 +140,9 @@
       @apply text-gray-100 font-medium text-base;
     }
   }
+  .main_logo {
+    @apply h-12 w-18 rounded-full bg-linear-to-r from-[#D6C7FF] to-[#AB8BFF];
+  }
 }
 
 @utility text-gradient {
