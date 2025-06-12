@@ -3,6 +3,7 @@ import Search from "./Componenet/Search.jsx";
 import Spinner from "./Componenet/Spinner.jsx";
 import MovieCard from "./Componenet/MovieCard.jsx";
 import  {useDebounce} from "react-use";
+import {updateSearcCount} from "./appwrite.js";
 
 const API_KEY = import.meta.env.VITE_TMDB_ACCESS_KEY;
 const BASE_URL = import.meta.env.VITE_TMDB_BASE_URL;
@@ -48,6 +49,10 @@ function App() {
             }
 
             setMoviesList(data.results || []);
+
+            if(query && data.results.length > 0) {
+                await updateSearcCount(query, data.results[0]);
+            }
         } catch (error) {
             console.log(error);
             setErrorMessages('Something went wrong. Please try again later.');
